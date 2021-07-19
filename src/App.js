@@ -1,6 +1,6 @@
 import './App.css';
 import React,{useState} from 'react';
-import $ from 'jquery';
+import fire from './Fire';
 
 function App() {
   const [date, setDate] = useState("");
@@ -16,6 +16,8 @@ function App() {
     e.preventDefault();
     const isValid = formValidation();
     if(isValid){
+      let msg = fire.database().ref('successful').orderByKey().limitToLast(10000);
+      fire.database.ref('successful').push({fullname},{date}, {addr}, {email}, {reason}, {phno});
       setDate("");
       setFulln("");
       setEmail("");
